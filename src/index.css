@@ -33,13 +33,37 @@
   --gradient-data: linear-gradient(135deg, #06b6d4, #7c3aed);
 }
 
+/* ─── Base ─── */
+html {
+  overflow-x: hidden; /* POLISH: prevent horizontal scroll on all devices */
+  -webkit-text-size-adjust: 100%; /* POLISH: prevent font scaling in landscape on iOS */
+}
+
 body {
   background-color: var(--color-bg);
   color: var(--color-text-primary);
   font-family: var(--font-sans);
+  overflow-x: hidden; /* POLISH: belt & suspenders for no horizontal scroll */
+  -webkit-font-smoothing: antialiased; /* OPTIMIZE: crisper text rendering */
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Grain texture overlay */
+/* ─── Custom Cursor: hide native cursor on pointer devices ─── */
+@media (hover: hover) and (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}
+
+/* Hide custom cursor elements on touch devices */
+@media (hover: none), (pointer: coarse) {
+  .custom-cursor-dot,
+  .custom-cursor-ring {
+    display: none !important;
+  }
+}
+
+/* ─── Grain texture overlay ─── */
 body::before {
   content: "";
   position: fixed;
@@ -50,7 +74,7 @@ body::before {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-/* Accessibility: disable animations for users who prefer reduced motion */
+/* ─── Accessibility: reduced motion ─── */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -60,8 +84,13 @@ body::before {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  .custom-cursor-dot,
+  .custom-cursor-ring {
+    display: none !important;
+  }
 }
 
+/* ─── Scrollbar ─── */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -85,7 +114,7 @@ body::before {
   background: rgba(124, 58, 237, 0.3);
 }
 
-/* Optimize Mobile Performance */
+/* ─── Mobile Performance: disable heavy blur on low-power devices ─── */
 @media (max-width: 767px) {
   .backdrop-blur-xl,
   .backdrop-blur-2xl,
@@ -95,5 +124,25 @@ body::before {
   .backdrop-blur {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
+  }
+}
+
+/* ─── OPTIMIZE: GPU hints for animated elements ─── */
+canvas {
+  contain: strict; /* isolate canvas paint from rest of DOM */
+}
+
+/* ─── POLISH: ensure all interactive elements have visible focus ─── */
+:focus-visible {
+  outline: 2px solid var(--color-accent-2);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* ─── POLISH: minimum touch target enforcement ─── */
+@media (pointer: coarse) {
+  a, button, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
   }
 }

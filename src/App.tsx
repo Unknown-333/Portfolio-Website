@@ -1,9 +1,10 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import type { Variants } from 'motion/react';
-import { Github, Mail, Linkedin, ArrowUpRight, X, GraduationCap, Rocket, ChevronLeft, ChevronRight, Download, Database, BarChart3, MapPin, Activity } from 'lucide-react';
+import { Github, Mail, Linkedin, ArrowUpRight, X, GraduationCap, Rocket, ChevronLeft, ChevronRight, Download, Database, BarChart3, MapPin, Activity, BookOpen } from 'lucide-react';
 import InteractiveBackground from './components/InteractiveBackground';
 import PortfolioEyes from './components/PortfolioEyes';
+import CustomCursor from './components/CustomCursor';
 
 /* ─── Tech stack icon map (simpleicons CDN) ─── */
 const TECH_ICONS: Record<string, { slug: string; color: string }> = {
@@ -93,7 +94,7 @@ const portfolioData = {
     Libraries: ["pandas", "NumPy", "Matplotlib", "Seaborn", "scikit-learn", "TensorFlow", "pdfplumber", "psycopg2", "confluent-kafka"],
     "Databases & BI": ["PostgreSQL", "TimescaleDB", "Metabase", "Grafana"],
   },
-  interests: "I predict Premier League match outcomes with machine learning. The model consistently beats my intuition.",
+  interests: "When I'm not coding, I spend my time reading non-fiction, psychology, and tech history. I'm always looking for ways to expand my perspective.",
 } as const;
 
 const EASE_OUT_QUART: [number, number, number, number] = [0.25, 1, 0.5, 1];
@@ -303,6 +304,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen p-4 md:p-8 flex items-center justify-center relative overflow-hidden font-sans text-[#111827]">
+      <CustomCursor />
       <InteractiveBackground />
 
       {/* Ambient glow */}
@@ -328,7 +330,7 @@ export default function App() {
           <div className="flex justify-between items-start relative z-10">
             <div className="flex gap-3 md:gap-4 items-center">
               <div className="relative">
-                <img src="/profile.jpg" alt="Aayush Paudel" className="w-12 h-12 md:w-14 md:h-14 rounded-2xl object-cover border border-[#e5e7eb]" />
+                <img src="/profile.jpg" alt="Aayush Paudel — Data Engineer" width={56} height={56} className="w-12 h-12 md:w-14 md:h-14 rounded-2xl object-cover border border-[#e5e7eb]" />
                 <div className="absolute -bottom-1 -right-1 w-3.5 h-3.5 md:w-4 md:h-4 bg-green-500 rounded-full border-2 border-white" />
               </div>
               <div>
@@ -533,7 +535,7 @@ export default function App() {
       {/* Profile Modal */}
       <Modal isOpen={activeModal === 'profile'} onClose={() => setActiveModal(null)} title="About Me">
         <div className="flex flex-col md:flex-row gap-5 md:gap-6 items-start">
-          <img src="/profile.jpg" alt="Aayush Paudel" className="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover border border-[#e5e7eb] shrink-0" />
+          <img src="/profile.jpg" alt="Aayush Paudel — Data Engineer and CSIT Student" width={96} height={96} className="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover border border-[#e5e7eb] shrink-0" loading="lazy" />
           <div>
             <h3 className="text-xl md:text-2xl font-bold text-[#111827]" style={{ fontFamily: 'var(--font-display)' }}>{portfolioData.name}</h3>
             <p className="text-[#ff6b6b] font-medium mb-3 md:mb-4 text-sm">{portfolioData.tagline}</p>
@@ -682,7 +684,10 @@ export default function App() {
             <p className="text-xs text-[#9ca3af] mt-1">Expected Graduation: {portfolioData.education.graduation}</p>
           </div>
           <div className="bg-[#fef3c7] border border-[#f59e0b]/20 p-5 md:p-6 rounded-2xl">
-            <h4 className="font-bold text-[#111827] mb-2">Premier League Predictor</h4>
+            <div className="flex items-center gap-3 mb-3">
+              <BookOpen className="w-5 h-5 text-[#f59e0b]" />
+              <h4 className="font-bold text-[#111827]">Avid Reader</h4>
+            </div>
             <p className="text-sm text-[#4b5563] leading-relaxed">{portfolioData.interests}</p>
           </div>
           <div className="bg-[#e0f2fe] border border-[#06b6d4]/20 p-5 md:p-6 rounded-2xl">
