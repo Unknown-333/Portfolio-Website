@@ -175,7 +175,7 @@ function ScrollArrows({ scrollRef }: { scrollRef: React.RefObject<HTMLDivElement
       <motion.button
         initial={{ opacity: 0 }}
         animate={{ opacity: canScrollLeft ? 1 : 0 }}
-        transition={{ duration: 0.2 }}
+        transition={{ duration: 0.2, ease: EASE_OUT_QUART }}
         onClick={(e) => { e.stopPropagation(); scroll('left'); }}
         className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md border border-[#e5e7eb] flex items-center justify-center hover:bg-white transition-colors shadow-md"
         style={{ pointerEvents: canScrollLeft ? 'auto' : 'none' }}
@@ -185,7 +185,7 @@ function ScrollArrows({ scrollRef }: { scrollRef: React.RefObject<HTMLDivElement
       <motion.button
         initial={{ opacity: 0 }}
         animate={{ opacity: canScrollRight ? 1 : 0 }}
-        transition={{ duration: 0.2 }}
+        transition={{ duration: 0.2, ease: EASE_OUT_QUART }}
         onClick={(e) => { e.stopPropagation(); scroll('right'); }}
         className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md border border-[#e5e7eb] flex items-center justify-center hover:bg-white transition-colors shadow-md"
         style={{ pointerEvents: canScrollRight ? 'auto' : 'none' }}
@@ -226,6 +226,7 @@ function SpotlightCard({ children, onClick, className, variants, isDraggable = t
       drag={isDraggable && !isMobile}
       dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }}
       dragElastic={0.8}
+      dragMomentum={false}
       dragTransition={{ bounceStiffness: 300, bounceDamping: 20 }}
       whileDrag={isDraggable && !isMobile ? { scale: 1.05, zIndex: 100, boxShadow: '0 20px 60px rgba(124,58,237,0.15)' } : undefined}
       whileTap={isMobile ? { scale: 0.97 } : undefined}
@@ -303,7 +304,12 @@ export default function App() {
 
   return (
     <div className="min-h-screen p-4 md:p-8 flex items-center justify-center relative overflow-hidden font-sans text-[#111827]">
-      <InteractiveBackground />
+      {/* PASS 3: hide canvas on mobile — expensive & not essential on small screens */}
+      <div className="hidden md:block">
+        <InteractiveBackground />
+      </div>
+      {/* Mobile-only static gradient background */}
+      <div className="fixed inset-0 z-0 md:hidden" style={{ background: 'var(--gradient-hero)' }} />
 
       {/* Ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[900px] h-[600px] bg-gradient-to-br from-[#ff6b6b]/5 via-[#7c3aed]/3 to-[#06b6d4]/5 blur-[100px] pointer-events-none rounded-full z-0 hidden md:block" />
@@ -315,7 +321,7 @@ export default function App() {
           hidden: { opacity: 0 },
           visible: { opacity: 1, transition: { staggerChildren: 0.08, ease: EASE_OUT_QUART } }
         }}
-        className="max-w-5xl w-full grid grid-cols-1 md:grid-cols-4 auto-rows-[190px] gap-4 md:gap-4 relative z-10 grid-flow-dense"
+        className="max-w-5xl w-full grid grid-cols-1 md:grid-cols-4 auto-rows-auto md:auto-rows-[190px] gap-4 md:gap-4 relative z-10 grid-flow-dense"
       >
 
         {/* ─── Profile Box (2-col) ─── */}
@@ -335,19 +341,22 @@ export default function App() {
                 <h1 className="text-xl md:text-2xl font-bold tracking-tight text-[#111827]" style={{ fontFamily: 'var(--font-display)' }}>{portfolioData.name}</h1>
                 <div className="flex items-center gap-1.5 mt-0.5">
                   <span className="text-xs text-[#9ca3af] font-mono">[</span>
-                  <AnimatePresence mode="wait">
-                    <motion.span
-                      key={roleIndex}
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -8 }}
-                      transition={{ duration: 0.3, ease: EASE_OUT_QUART }}
-                      className="text-xs md:text-sm font-semibold text-[#7c3aed]"
-                      style={{ fontFamily: 'var(--font-mono)' }}
-                    >
-                      {portfolioData.roles[roleIndex]}
-                    </motion.span>
-                  </AnimatePresence>
+                  {/* PASS 1: position:relative container + absolute exiting span prevents layout shift during crossfade */}
+                  <span className="relative inline-flex items-center" style={{ minWidth: '8em' }}>
+                    <AnimatePresence mode="wait">
+                      <motion.span
+                        key={roleIndex}
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8, position: 'absolute' as const }}
+                        transition={{ duration: 0.3, ease: EASE_OUT_QUART }}
+                        className="text-xs md:text-sm font-semibold text-[#7c3aed]"
+                        style={{ fontFamily: 'var(--font-mono)' }}
+                      >
+                        {portfolioData.roles[roleIndex]}
+                      </motion.span>
+                    </AnimatePresence>
+                  </span>
                   <span className="text-xs text-[#9ca3af] font-mono">]</span>
                 </div>
               </div>
