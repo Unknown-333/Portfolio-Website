@@ -1,89 +1,102 @@
-# Aayush Paudel — Portfolio
+# Aayush Paudel -- Personal Portfolio
 
-A modern, bento-grid portfolio built with React 19, Vite, Tailwind CSS v4, and Framer Motion.
+A visually striking, performance-optimized personal portfolio featuring a modern bento-grid layout with the Bright Signal light-mode design system. Built for interactivity, smooth animations, and a flawless responsive experience across all devices.
 
-![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-6-646CFF?logo=vite&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)
-![Framer Motion](https://img.shields.io/badge/Framer_Motion-12-FF0050?logo=framer&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?logo=typescript&logoColor=white)
 
----
+## Features
 
-## ✨ Features
+- **Interactive Particle Network**: A dynamic canvas-based data-flow network where nodes drift organically, connections brighten near the cursor, and clicking spawns particle bursts that scatter like data packets.
+- **Spotlight Bento Cards**: Mouse-tracking radial glow that follows the cursor inside glassmorphic cards, making the interface feel alive and tactile.
+- **Draggable UI Elements**: Engaging draggable grid boxes with smart click-vs-drag detection powered by Framer Motion physics.
+- **Icon-Enhanced Tech Stack**: Technology pills featuring brand logos from SimpleIcons with spring-animated hover effects -- scale, color shift, and icon rotation.
+- **Portfolio Eyes**: Custom mouse-tracking animated eyes with violet iris that follow cursor movement using requestAnimationFrame.
+- **Accordion Projects**: Smooth expand/collapse project details with height animation and staggered reveals.
+- **Responsive Design**: Flawless experience across desktop, tablet, and mobile with touch-optimized interactions and no sticky hover artifacts.
 
-- **Bento Grid Layout** — 4-column dense grid with draggable cards (Framer Motion `drag`)
-- **Glassmorphic Cards** — translucent white cards with backdrop blur and subtle borders
-- **Animated Modals** — full-screen overlays with AnimatePresence, Escape/backdrop close, focus trap
-- **Cycling Role Text** — crossfade animation between Data Engineer → Analyst → Scientist
-- **PortfolioEyes** — mouse-tracking animated eyes with violet iris
-- **Interactive Background** — organic CSS blobs with lavender, cyan, and amber tints
-- **Accordion Projects** — expand/collapse project details with smooth height animation
-- **Responsive** — mobile-first with performance optimizations (backdrop-blur disabled on phones)
-- **Accessible** — `prefers-reduced-motion` guard, semantic HTML, WCAG AA contrast
 
-## 🛠 Tech Stack
+## Quick Start
 
-| Layer | Technology |
-|-------|-----------|
-| Framework | React 19, TypeScript |
-| Build | Vite 6 |
-| Styling | Tailwind CSS v4 (`@tailwindcss/vite`) |
-| Animation | Framer Motion v12 (`motion/react`) |
-| Icons | Lucide React |
-| Fonts | Syne · Plus Jakarta Sans · JetBrains Mono |
-
-## 🚀 Getting Started
+Clone the repository
 
 ```bash
-# Install dependencies
+git clone https://github.com/Unknown-333/Portfolio-Website.git
+```
+
+Install dependencies
+
+```bash
 npm install
+```
 
-# Start dev server (port 3000)
+Run the development server
+
+```bash
 npm run dev
+```
 
-# Type check
-npm run lint
+Build for production
 
-# Production build
+```bash
 npm run build
-
-# Preview production build
-npm run preview
 ```
 
-## 📁 Project Structure
+
+## Tech Stack
+
+| Layer      | Technology                                  |
+|------------|---------------------------------------------|
+| Framework  | React 19 / Vite 6                           |
+| Language   | TypeScript 5.8                              |
+| Styling    | Tailwind CSS v4 with custom @theme tokens   |
+| Animations | Framer Motion v12 / Custom Canvas API       |
+| Icons      | Lucide React / SimpleIcons CDN              |
+| Fonts      | Syne, Plus Jakarta Sans, JetBrains Mono     |
+
+
+## Design System -- Bright Signal
+
+| Token      | Value     | Usage                        |
+|------------|-----------|------------------------------|
+| Background | #FAFAF7   | Warm off-white page backdrop |
+| Card       | white/80  | Glassmorphic translucent     |
+| Coral      | #FF6B6B   | Primary CTAs, active states  |
+| Violet     | #7C3AED   | Secondary accent, role text  |
+| Cyan       | #06B6D4   | Data Engineering markers     |
+| Amber      | #F59E0B   | Data Science markers         |
+
+
+## Project Structure
 
 ```
-├── public/
-│   ├── profile.jpg              # Profile photo
-│   └── cv/
-│       └── Aayush_Paudel_CV.pdf # Downloadable CV
-├── src/
-│   ├── App.tsx                  # Main app (~628 lines — layout, data, modals)
-│   ├── index.css                # Bright Signal theme tokens
-│   ├── main.tsx                 # Entry point
-│   └── components/
-│       ├── InteractiveBackground.tsx  # Animated CSS blob background
-│       └── PortfolioEyes.tsx          # Mouse-tracking eyes
-├── index.html
-├── vite.config.ts
-└── tsconfig.json
+src/
+  App.tsx                          -- Main application (bento grid, modals, data)
+  index.css                        -- Bright Signal theme tokens and utilities
+  main.tsx                         -- React 19 entry point
+  components/
+    InteractiveBackground.tsx      -- Canvas particle network with click-burst
+    PortfolioEyes.tsx              -- Mouse-tracking animated eyes
 ```
 
-## 🎨 Design System — Bright Signal
 
-| Token | Hex | Usage |
-|-------|-----|-------|
-| Background | `#FAFAF7` | Page background |
-| Card | `white/80` | Glassmorphic cards |
-| Coral | `#FF6B6B` | Primary CTAs, active states |
-| Violet | `#7C3AED` | Secondary accent, role text |
-| Cyan | `#06B6D4` | Data Engineering tags |
-| Amber | `#F59E0B` | Data Science tags |
+## Deployment
 
+Deploy to Vercel or any static host:
+
+1. Import the repository
+2. Framework preset: Vite
+3. Build command: `npm run build`
+4. Output directory: `dist`
 
 
----
+## Credits
 
-**Built by [Aayush Paudel](https://github.com/Unknown-333)** · Kathmandu, Nepal
+Structural architecture inspired by [AbhishekBarali/personal-website-japanese-themed](https://github.com/AbhishekBarali/personal-website-japanese-themed), re-designed with the Bright Signal light-mode aesthetic.
+
+
+## Author
+
+Aayush Paudel
+
+- Data Engineering and Analytics
+- BSc. CSIT, St. Xavier's College, Kathmandu
+- [GitHub](https://github.com/Unknown-333) / [LinkedIn](https://www.linkedin.com/in/aayush-paudel-3076a228a/)
