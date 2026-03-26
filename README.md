@@ -1,6 +1,6 @@
 # Aayush Paudel — Portfolio
 
-A modern, bento-grid portfolio built with React 19, Vite, Tailwind CSS v4, and Framer Motion. Structurally inspired by [AbhishekBarali's Japanese-themed portfolio](https://github.com/AbhishekBarali/personal-website-japanese-themed), re-skinned with a vibrant **Bright Signal** light-mode design system.
+A modern, bento-grid portfolio built with React 19, Vite, Tailwind CSS v4, and Framer Motion.
 
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-6-646CFF?logo=vite&logoColor=white)
@@ -82,20 +82,7 @@ npm run preview
 | Cyan | `#06B6D4` | Data Engineering tags |
 | Amber | `#F59E0B` | Data Science tags |
 
-## 📋 Content
 
-- **4 Projects** — NEPSE Streaming, NEA Data Warehouse, Premier League Prediction, Diabetes & Ad Prediction
-- **5 Skill Categories** — Languages, Frameworks & Tools, Developer Tools, Libraries, Databases & BI
-- **Contact** — Email, GitHub, LinkedIn, CV download
-
-## 🌐 Deployment
-
-Deploy to [Vercel](https://vercel.com):
-
-1. Import this repository
-2. Framework preset: **Vite**
-3. Build command: `npm run build`
-4. Output directory: `dist`
 
 ---
 
