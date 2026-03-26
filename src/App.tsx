@@ -4,7 +4,6 @@ import type { Variants } from 'motion/react';
 import { Github, Mail, Linkedin, ArrowUpRight, X, GraduationCap, Rocket, ChevronLeft, ChevronRight, Download, Database, BarChart3, MapPin, Activity, BookOpen } from 'lucide-react';
 import InteractiveBackground from './components/InteractiveBackground';
 import PortfolioEyes from './components/PortfolioEyes';
-import CustomCursor from './components/CustomCursor';
 
 /* ─── Tech stack icon map (simpleicons CDN) ─── */
 const TECH_ICONS: Record<string, { slug: string; color: string }> = {
@@ -304,7 +303,6 @@ export default function App() {
 
   return (
     <div className="min-h-screen p-4 md:p-8 flex items-center justify-center relative overflow-hidden font-sans text-[#111827]">
-      <CustomCursor />
       <InteractiveBackground />
 
       {/* Ambient glow */}
