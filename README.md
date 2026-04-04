@@ -88,11 +88,6 @@ Deploy to Vercel or any static host:
 4. Output directory: `dist`
 
 
-## Credits
-
-Structural architecture inspired by [AbhishekBarali/personal-website-japanese-themed](https://github.com/AbhishekBarali/personal-website-japanese-themed), re-designed with the Bright Signal light-mode aesthetic.
-
-
 ## Author
 
 Aayush Paudel
@@ -100,4 +95,4 @@ Aayush Paudel
 - Data Engineering and Analytics
 - BSc. CSIT, St. Xavier's College, Kathmandu
 - [GitHub](https://github.com/Unknown-333) / [LinkedIn](https://www.linkedin.com/in/aayush-paudel-3076a228a/)
--Deployed at - https://portfolio-website-kappa-gules-31.vercel.app/
+-Deployed at - https://www.paudel-aayush.com.np/
