@@ -498,7 +498,7 @@ export default function App() {
           </div>
           <div className="relative z-10 flex justify-between items-end">
             <div className="flex gap-2 flex-wrap">
-              <span className="px-3 py-1 bg-[#e0f2fe] rounded-full text-xs md:text-sm font-bold text-[#06b6d4] border border-[#06b6d4]/20">4 Shipped</span>
+              <span className="px-3 py-1 bg-[#e0f2fe] rounded-full text-xs md:text-sm font-bold text-[#06b6d4] border border-[#06b6d4]/20">7 Shipped</span>
               <span className="px-3 py-1 bg-[#fef3c7] rounded-full text-xs md:text-sm font-bold text-[#f59e0b] border border-[#f59e0b]/20">ML Models</span>
             </div>
             <PortfolioEyes size={28} className="opacity-60 group-hover:opacity-100 transition-opacity hidden sm:flex" />
